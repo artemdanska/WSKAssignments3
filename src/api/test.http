@@ -6,6 +6,13 @@ GET http://127.0.0.1:3000/api/v1/cat/9592
 
 ### Add
 POST http://127.0.0.1:3000/api/v1/cat
+Content-Type: application/json
+
+  {
+    "name": "Whiskers",
+    "age": 3,
+    "breed": "Siamese"
+}
 
 ### Update
 PUT http://127.0.0.1:3000/api/v1/cat/9592
@@ -21,6 +28,12 @@ GET http://127.0.0.1:3000/api/v1/user/3609
 
 ### Add
 POST http://127.0.0.1:3000/api/v1/user
+Content-Type: application/json
+
+  {
+    "username": "johndoe",
+    "email": "johndoe@example.com"
+}
 
 ### Update
 PUT http://127.0.0.1:3000/api/v1/user/3609
