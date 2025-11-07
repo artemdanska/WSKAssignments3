@@ -1,0 +1,29 @@
+### Get all
+GET http://127.0.0.1:3000/api/v1/cat
+
+### Get by id
+GET http://127.0.0.1:3000/api/v1/cat/9592
+
+### Add
+POST http://127.0.0.1:3000/api/v1/cat
+
+### Update
+PUT http://127.0.0.1:3000/api/v1/cat/9592
+
+### Delete
+DELETE http://127.0.0.1:3000/api/v1/cat/9592
+
+### Get all
+GET http://127.0.0.1:3000/api/v1/user
+
+### Get by id
+GET http://127.0.0.1:3000/api/v1/user/3609
+
+### Add
+POST http://127.0.0.1:3000/api/v1/user
+
+### Update
+PUT http://127.0.0.1:3000/api/v1/user/3609
+
+### Delete
+DELETE http://127.0.0.1:3000/api/v1/user/3609
