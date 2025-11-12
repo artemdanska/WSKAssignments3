@@ -10,6 +10,7 @@ import {
 const userRouter = express.Router();
 
 userRouter.route('/').get(getUser).post(postUser);
-userRouter.route('/:id').put(putUser).delete(deleteUser).get(getUserById);
+
+userRouter.route('/:id').get(getUserById).put(putUser).delete(deleteUser);
 
 export default userRouter;
