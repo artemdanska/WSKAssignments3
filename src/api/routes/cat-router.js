@@ -7,9 +7,11 @@ import {
   putCat,
   deleteCat,
 } from '../controllers/cat-controller.js';
+import {createThumbnail} from '../../middlewares/upload.js';
 
 const catRouter = express.Router();
 
+// Configure Multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -21,7 +23,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage});
 
-catRouter.route('/').get(getCat).post(upload.single('image'), postCat);
+// ✅ Updated POST route: add createThumbnail between upload and controller
+catRouter
+  .route('/')
+  .get(getCat)
+  .post(upload.single('image'), createThumbnail, postCat);
+
 catRouter.route('/:id').get(getCatById).put(putCat).delete(deleteCat);
 
 export default catRouter;
