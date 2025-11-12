@@ -17,9 +17,18 @@ const findUserById = async (id) => {
 };
 
 const addUser = async (user) => {
-  const {name, email} = user;
-  const sql = 'INSERT INTO wsk_users (name, email) VALUES (?, ?)';
-  const [result] = await promisePool.execute(sql, [name, email]);
+  const {username, password, name, email, role = 'user'} = user;
+
+  const sql = `INSERT INTO wsk_users (username, password, name, email, role)
+               VALUES (?, ?, ?, ?, ?)`;
+  const [result] = await promisePool.execute(sql, [
+    username,
+    password,
+    name,
+    email,
+    role,
+  ]);
+
   console.log('rows', result);
   if (result.affectedRows === 0) return false;
   return {user_id: result.insertId};
@@ -55,4 +64,17 @@ const deleteUserAndCats = async (userId) => {
   }
 };
 
-export {listAllUsers, findUserById, addUser, deleteUserAndCats};
+const findUserByUsername = async (username) => {
+  const sql = 'SELECT * FROM wsk_users WHERE username = ?';
+  const [rows] = await promisePool.execute(sql, [username]);
+  if (rows.length === 0) return null;
+  return rows[0];
+};
+
+export {
+  listAllUsers,
+  findUserById,
+  addUser,
+  deleteUserAndCats,
+  findUserByUsername,
+};

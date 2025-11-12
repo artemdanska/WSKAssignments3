@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import {
   addUser,
   findUserById,
@@ -26,6 +27,10 @@ const getUserById = async (req, res) => {
 
 const postUser = async (req, res) => {
   try {
+    if (req.body.password) {
+      req.body.password = bcrypt.hashSync(req.body.password, 10);
+    }
+
     const result = await addUser(req.body);
     if (result.user_id)
       res.status(201).json({message: 'New user added.', result});
